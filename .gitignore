@@ -1,1 +1,20 @@
-*.env
+# Audio and video output files (large and binary)
+data/audio/
+data/video/
+
+# Subtitle files (auto-generated)
+data/subtitles/
+
+# Excel and scraped data
+data/output.xlsx
+
+# JSON secrets or credentials
+json/gc_details_tts.json
+
+# Python cache
+__pycache__/
+scraper/__pycache__/
+tts/__pycache__/
+
+# Environment variables
+.env

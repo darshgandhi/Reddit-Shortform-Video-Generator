@@ -10,5 +10,4 @@ if __name__ == "__main__":
     # Retrieve reddit data and store to output
     reddit_data = get_posts(config)
 
-    df = pd.DataFrame(reddit_data[1:], columns=reddit_data[0])
-    df.to_excel('./data/output.xlsx', index=False)
+    print(reddit_data)

@@ -1,9 +1,10 @@
 import praw
 import os
+import re
 from dotenv import load_dotenv
 from better_profanity import profanity
 import pandas as pd
-from .text_cleaner import sanitize_text
+from .text_cleaner import sanitize_text, clean_comment
 
 # Load environment variables at module level
 load_dotenv()
@@ -62,10 +63,11 @@ def get_posts(config):
                 if count >= comment_limit:
                     break
                 if comment.body:  # Ensure it's a real comment
-                    comments.append(f"id: {comment.id} - {comment.body.strip()}")
+                    cleaned_comment = clean_comment(comment)
+                    print(cleaned_comment)
+                    comments.append([comment.id, cleaned_comment])
                     count += 1
-            comments_str = "\n".join(comments)
 
-        reddit_data.append([title, cleaned_text, comments_str, post.url])
+        reddit_data.append([title, cleaned_text, comments, post.url])
     
     return reddit_data

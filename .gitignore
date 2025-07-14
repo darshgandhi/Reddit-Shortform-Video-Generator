@@ -1,6 +1,7 @@
 # Audio and video output files (large and binary)
 data/audio/
 data/video/
+data/screenshots/
 
 # Subtitle files (auto-generated)
 data/subtitles/

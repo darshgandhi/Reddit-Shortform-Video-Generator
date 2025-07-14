@@ -1,9 +1,6 @@
 import praw
 import os
-import re
 from dotenv import load_dotenv
-from better_profanity import profanity
-import pandas as pd
 from .text_cleaner import sanitize_text, clean_comment
 
 # Load environment variables at module level
@@ -22,7 +19,7 @@ def get_posts(config):
     )
 
     # Set up reddit data list (used for output.xlsx)
-    reddit_data = [["Title", "Description", "Comments", "Post URL"]]
+    reddit_data = []
 
     # Apply configs
     subreddit_name = config.get("subreddit")
@@ -62,12 +59,11 @@ def get_posts(config):
             for comment in post.comments:
                 if count >= comment_limit:
                     break
-                if comment.body:  # Ensure it's a real comment
+                if comment.body and len(comment.body) <= 600:  # Ensure it's a real comment and less than 600 char length
                     cleaned_comment = clean_comment(comment)
-                    print(cleaned_comment)
-                    comments.append([comment.id, cleaned_comment])
+                    comments.append((comment.id, cleaned_comment))
                     count += 1
 
-        reddit_data.append([title, cleaned_text, comments, post.url])
+        reddit_data.append((title, cleaned_text, comments, post.url))
     
     return reddit_data

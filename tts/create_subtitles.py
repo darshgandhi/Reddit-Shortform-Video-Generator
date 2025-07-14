@@ -13,4 +13,4 @@ def transcribe_mp3(filepath, filename):
         out.write(subtitles)
 
 
-transcribe_mp3("./data/audio/output_pytts_0.mp3", "output_pytts_0")
+#transcribe_mp3("./data/audio/output_pytts_0.mp3", "output_pytts_0")

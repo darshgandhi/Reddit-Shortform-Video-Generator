@@ -1,5 +1,19 @@
 import re
 
+replacements = {
+    "NTAH": "Not the A-hole",
+    "NTA": "Not the A-hole",
+    "YTAH": "You're the A-hole",
+    "YTA": "You're the A-hole",
+    "ESH": "Everyone Sucks Here",
+    "NAH": "No A-holes Here",
+    "INFO": "Not Enough Info",
+    "YWBTAH": "You Would Be the A-hole",
+    "YWBTA": "You Would Be the A-hole",
+    "YWNBTAH": "You Would Not Be the A-hole",
+    "YWNBTA": "You Would Not Be the A-hole",
+    }
+
 def sanitize_text(text):
     replacements = {
         "fuck": "frick",
@@ -20,4 +34,8 @@ def clean_comment(comment):
     text = text.replace("\n", " ")
     text = cleanup_pattern.sub(" ", text)
     text = re.sub(r'\s+', ' ', text).strip()
+
+    for abbr, full in replacements.items():
+        text = text.replace(abbr, full)
+
     return text

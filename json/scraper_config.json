@@ -7,11 +7,18 @@
     "time_range": "week",
     "sort_by": "top",
     "nsfw": false,
-    "screenshot": true
+    "screenshot": false
   },
   "comments": {
     "get_comments": true,
     "comment_limit": 5,
     "screenshot": true
+  },
+  "video": {
+    "video_size_x": 1280,
+    "video_size_y": 720,
+    "font_size": 49,
+    "font_color": "White",
+    "font": "Arial"
   }
 }
